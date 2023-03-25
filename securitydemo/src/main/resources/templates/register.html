@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{headFr.html :: head('Kaydol')}"></head>
+<body>
+	<div class="container">
+		<form action="/register" method="POST" class="row g-3 mt-4" th:object="${user}">
+			<input class="form-control" type="text" th:field="*{name}" placeholder="İsim"> <input
+				class="form-control" type="text" th:field="*{surname}" placeholder="Soyisim"> <input
+				class="form-control" type="date" th:field="*{birthDay}" placeholder="Doğum Tarihi">
+
+			<div class="form-check" th:each="g : ${genders}">
+				<label th:for="${g}" th:text="${g}"></label>
+				<input
+					th:id="${g}"
+					class="form-check-input" 
+					type="radio"
+					th:value="${g}"
+					th:field="*{gender}"> 
+				
+			</div>
+
+			<select class="form-select" th:field="*{job}">
+				<option th:value="''" selected>Bir meslek seçin...</option>
+				<option th:value="'Öğretmen'">Öğretmen</option>
+				<option th:value="'Yazılımcı'">Yazılımcı</option>
+				<option th:value="'Öğrenci'">Öğrenci</option>
+			</select> 
+			<input class="form-control" type="text" th:field="*{username}" placeholder="Kullanıcı Adı">
+			<input class="form-control" type="password" th:field="*{password}" placeholder="Şifre">
+			<input type="submit" class="btn btn-success">
+		</form>
+	</div>
+</body>
+</html>
